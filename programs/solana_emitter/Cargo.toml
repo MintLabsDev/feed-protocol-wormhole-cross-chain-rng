@@ -1,0 +1,26 @@
+[package]
+name = "hello-world"
+version = "0.1.0"
+description = "01 - Hello World"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "solana_emitter"
+
+[features]
+default = ["mainnet"]
+mainnet = ["wormhole-anchor-sdk/mainnet"]
+testnet = ["wormhole-anchor-sdk/solana-devnet"]
+devnet = ["wormhole-anchor-sdk/tilt-devnet"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+idl-build = ["anchor-lang/idl-build", "wormhole-anchor-sdk/idl-build"]
+
+[dependencies]
+solana-program = "1.18.17"
+anchor-lang = { workspace = true }
+wormhole-anchor-sdk = { path = "../../modules/wormhole-anchor-sdk", default-features = false }
+wormhole-io = { workspace = true }
